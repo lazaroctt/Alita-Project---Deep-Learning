@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: 'Inter', system-ui, sans-serif;
+  --font-jetbrains-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: #06080e;
+    @apply text-slate-200 antialiased;
+  }
+
+  ::selection {
+    background-color: rgba(37,99,235,0.25);
+    color: #fff;
+  }
+}
+
+@layer components {
+  .container-wide  { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
+  .section-padding { @apply py-20 md:py-28; }
+
+  /* Minimal card — subtle border, no glow */
+  .card {
+    @apply bg-white/[0.03] border border-white/[0.07] rounded-2xl;
+  }
+
+  /* Label above section headings */
+  .section-label {
+    @apply text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500;
+  }
+
+  /* Single-accent highlight on headings */
+  .accent-word { @apply text-blue-400; }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+
+  /* Very subtle grid dot background */
+  .dot-grid {
+    background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+}
