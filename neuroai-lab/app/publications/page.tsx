@@ -62,8 +62,8 @@ export default function PublicationsPage() {
   const [yearFilter,  setYearFilter]  = useState<number | 'all'>('all')
   const [topicFilter, setTopicFilter] = useState<string>('all')
 
-  const years    = useMemo(() => [...new Set(publications.map((p) => p.year))].sort((a, b) => b - a), [])
-  const allTopics = useMemo(() => [...new Set(publications.flatMap((p) => p.topics))].sort(), [])
+  const years = useMemo(() => Array.from(new Set(publications.map((p) => p.year))).sort((a, b) => b - a), [publications])
+  const allTopics = useMemo(() => Array.from(new Set(publications.flatMap((p) => p.topics))).sort(), [publications])
 
   const filtered = useMemo(() => publications.filter((p) => {
     const q = search.toLowerCase()
