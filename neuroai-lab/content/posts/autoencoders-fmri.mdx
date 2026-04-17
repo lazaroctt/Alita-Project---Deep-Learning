@@ -10,7 +10,7 @@ author: "Lazaro C. T."
 ## Introdução
 
 A ressonância magnética funcional (fMRI) produz volumes 4D de altíssima dimensionalidade — tipicamente
->100 000 voxels amostrados ao longo de centenas de timepoints. Extrair representações compactas e
+mais de 100 000 voxels amostrados ao longo de centenas de timepoints. Extrair representações compactas e
 interpretáveis desse espaço é um dos grandes desafios da neurociência computacional moderna.
 
 Os **autoencoders convolucionais** oferecem uma solução elegante: ao forçar a rede a comprimir e
@@ -52,9 +52,11 @@ class fMRIAutoencoder(nn.Module):
 A função de perda combina erro de reconstrução MSE com regularização KL para a variante
 variacional:
 
-$$
-\mathcal{L} = \underbrace{\|x - \hat{x}\|^2}_{\text{reconstrução}} + \beta \cdot \underbrace{D_{KL}(q(z|x) \| p(z))}_{\text{regularização}}
-$$
+```
+L = ||x - x_hat||²  +  β · D_KL( q(z|x) || p(z) )
+    ──────────────        ────────────────────────
+      reconstrução              regularização KL
+```
 
 ## Resultados preliminares
 
