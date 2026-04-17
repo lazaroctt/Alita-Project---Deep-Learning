@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
@@ -63,9 +64,13 @@ export default function AboutPage() {
           <div className="flex flex-col md:flex-row gap-10 items-start mb-20">
             {/* Avatar */}
             <div className="shrink-0">
-              <div className="w-24 h-24 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-2xl font-bold text-slate-400 font-mono">
-                {pi?.name.split(' ').map((w) => w[0]).slice(0, 2).join('')}
-              </div>
+              <Image
+                src="/images/IMG_0951.jpeg"
+                alt={pi?.name ?? 'Principal Investigator'}
+                width={96}
+                height={96}
+                className="w-24 h-24 rounded-xl object-cover border border-white/[0.08]"
+              />
             </div>
 
             <div className="flex-1">
