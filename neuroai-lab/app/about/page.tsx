@@ -4,6 +4,7 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Badge from '@/components/ui/Badge'
 import { team } from '@/data/team'
+// team[0] is the PI — no other members displayed
 
 export const metadata: Metadata = {
   title: 'About',
@@ -188,29 +189,6 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* Team */}
-          <section>
-            <p className="section-label mb-5">Team</p>
-            <div className="grid md:grid-cols-2 gap-4">
-              {team.slice(1).map((member) => (
-                <div key={member.id} className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-5 flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-white/[0.04] border border-white/[0.07] flex items-center justify-center text-[12px] font-bold text-slate-500 font-mono shrink-0">
-                    {member.name.split(' ').map((w) => w[0]).slice(0, 2).join('')}
-                  </div>
-                  <div>
-                    <p className="font-semibold text-slate-200 text-sm">{member.name}</p>
-                    <p className="text-[12px] text-blue-500 mb-2">{member.role}</p>
-                    <p className="text-[12px] text-slate-600 leading-relaxed">{member.bio}</p>
-                    <div className="flex flex-wrap gap-1.5 mt-3">
-                      {member.skills.slice(0, 4).map((s) => (
-                        <Badge key={s} variant="muted">{s}</Badge>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
 
         </div>
       </main>
