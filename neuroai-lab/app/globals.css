@@ -2,17 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===== THEME VARIABLES ===== */
 :root {
   --font-inter: 'Inter', system-ui, sans-serif;
   --font-jetbrains-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Dark theme (default) */
+  --bg:           #06080e;
+  --bg-surface:   rgba(255,255,255,0.03);
+  --bg-overlay:   rgba(255,255,255,0.02);
+  --fg:           #e2e8f0;
+  --fg-secondary: #94a3b8;
+  --fg-muted:     #64748b;
+  --border:       rgba(255,255,255,0.07);
+  --dot:          rgba(255,255,255,0.04);
+  --vignette:     #06080e;
+  --nav-bg:       rgba(6,8,14,0.92);
+  --card-bg:      rgba(255,255,255,0.03);
 }
 
+html.light {
+  --bg:           #f0f4f8;
+  --bg-surface:   rgba(255,255,255,0.7);
+  --bg-overlay:   rgba(255,255,255,0.5);
+  --fg:           #0f172a;
+  --fg-secondary: #475569;
+  --fg-muted:     #94a3b8;
+  --border:       rgba(15,23,42,0.09);
+  --dot:          rgba(15,23,42,0.05);
+  --vignette:     #f0f4f8;
+  --nav-bg:       rgba(240,244,248,0.92);
+  --card-bg:      rgba(255,255,255,0.75);
+}
+
+/* ===== BASE ===== */
 @layer base {
   html { scroll-behavior: smooth; }
 
   body {
-    background-color: #06080e;
-    @apply text-slate-200 antialiased;
+    background-color: var(--bg);
+    color: var(--fg);
+    @apply antialiased;
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
 
   ::selection {
@@ -21,30 +52,77 @@
   }
 }
 
+/* ===== COMPONENTS ===== */
 @layer components {
   .container-wide  { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
   .section-padding { @apply py-20 md:py-28; }
 
-  /* Minimal card — subtle border, no glow */
   .card {
-    @apply bg-white/[0.03] border border-white/[0.07] rounded-2xl;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    @apply rounded-2xl;
   }
 
-  /* Label above section headings */
   .section-label {
-    @apply text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500;
+    @apply text-[11px] font-semibold uppercase tracking-[0.18em];
+    color: var(--fg-muted);
   }
 
-  /* Single-accent highlight on headings */
   .accent-word { @apply text-blue-400; }
 }
 
+/* ===== UTILITIES ===== */
 @layer utilities {
   .text-balance { text-wrap: balance; }
 
-  /* Very subtle grid dot background */
   .dot-grid {
-    background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-image: radial-gradient(var(--dot) 1px, transparent 1px);
     background-size: 32px 32px;
   }
+}
+
+/* ===== LIGHT MODE — text overrides for hardcoded Tailwind classes ===== */
+html.light .text-slate-100 { color: #1e293b !important; }
+html.light .text-slate-200 { color: #334155 !important; }
+html.light .text-slate-300 { color: #475569 !important; }
+html.light .text-slate-400 { color: #64748b !important; }
+html.light .text-slate-500 { color: #94a3b8 !important; }
+
+html.light .border-white\/\[0\.06\],
+html.light .border-white\/\[0\.07\] { border-color: rgba(15,23,42,0.09) !important; }
+
+html.light .bg-white\/\[0\.03\],
+html.light .bg-white\/\[0\.05\] { background-color: rgba(255,255,255,0.7) !important; }
+
+html.light section[class] { background-color: transparent; }
+
+/* ===== NEURAL NETWORK HERO ANIMATIONS ===== */
+@keyframes nodeGlow {
+  0%, 100% { opacity: 0.35; }
+  50%       { opacity: 1; }
+}
+
+@keyframes signalFlow {
+  0%   { stroke-dashoffset: 120; opacity: 0; }
+  15%  { opacity: 0.6; }
+  85%  { opacity: 0.6; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+@keyframes brainPulse {
+  0%, 100% { opacity: 0.1; }
+  50%       { opacity: 0.18; }
+}
+
+.node-animate {
+  animation: nodeGlow 2.4s ease-in-out infinite;
+}
+
+.edge-animate {
+  stroke-dasharray: 120;
+  animation: signalFlow 3s ease-in-out infinite;
+}
+
+.brain-outline {
+  animation: brainPulse 4s ease-in-out infinite;
 }
