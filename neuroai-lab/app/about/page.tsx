@@ -166,19 +166,6 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* Affiliations */}
-          <section className="mb-20">
-            <p className="section-label mb-5">Institutional Affiliations</p>
-            <ul className="space-y-2">
-              {pi?.affiliations.map((aff) => (
-                <li key={aff} className="flex items-center gap-3 text-slate-400 text-sm">
-                  <span className="w-1 h-1 rounded-full bg-slate-600 shrink-0" />
-                  {aff}
-                </li>
-              ))}
-            </ul>
-          </section>
-
           {/* Skills */}
           <section className="mb-20">
             <p className="section-label mb-5">Technical Skills</p>
