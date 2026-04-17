@@ -1,5 +1,48 @@
 import Link from 'next/link'
 
+function UFFBadge() {
+  return (
+    <svg
+      viewBox="0 0 64 64"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-8 h-8"
+      aria-label="Universidade Federal Fluminense"
+    >
+      {/* Outer ring */}
+      <circle cx="32" cy="32" r="30" stroke="rgba(96,165,250,0.35)" strokeWidth="1.2" fill="none" />
+      {/* Inner ring */}
+      <circle cx="32" cy="32" r="24" stroke="rgba(96,165,250,0.2)" strokeWidth="0.8" fill="rgba(96,165,250,0.04)" />
+      {/* UFF letters */}
+      <text
+        x="32" y="36"
+        textAnchor="middle"
+        fontSize="13"
+        fontWeight="700"
+        fontFamily="Georgia, serif"
+        letterSpacing="1.5"
+        fill="rgba(96,165,250,0.75)"
+      >
+        UFF
+      </text>
+      {/* Top arc decoration */}
+      <path
+        d="M 14 22 A 20 20 0 0 1 50 22"
+        stroke="rgba(96,165,250,0.25)"
+        strokeWidth="0.8"
+        fill="none"
+      />
+      {/* Bottom arc decoration */}
+      <path
+        d="M 14 42 A 20 20 0 0 0 50 42"
+        stroke="rgba(96,165,250,0.25)"
+        strokeWidth="0.8"
+        fill="none"
+      />
+    </svg>
+  )
+}
+
 const socialLinks = [
   {
     label: 'Google Scholar',
@@ -91,9 +134,15 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-white/[0.04] flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-700">
-          <p>&copy; {new Date().getFullYear()} Alita Project. All rights reserved.</p>
-          <p>Department of Neuroscience &mdash; University of Example</p>
+        <div className="mt-8 pt-6 border-t border-white/[0.04] flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-[11px] text-slate-700">&copy; {new Date().getFullYear()} Alita Project. All rights reserved.</p>
+          <div className="flex items-center gap-2.5">
+            <UFFBadge />
+            <div className="flex flex-col">
+              <span className="text-[12px] font-medium text-slate-400">Lázaro Romão</span>
+              <span className="text-[10px] text-slate-600">Universidade Federal Fluminense</span>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
